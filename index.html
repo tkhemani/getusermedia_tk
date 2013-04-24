@@ -1,72 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+    <title>GumWrapper example</title>
+</head>
+<body>
+    <h1>GumWrapper example</h1>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Getusermedia tk : getusermedia camera app" />
+    <video id="myVideo"></video>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Getusermedia tk</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/tkhemani/getusermedia_tk">View on GitHub</a>
-
-          <h1 id="project_title">Getusermedia tk</h1>
-          <h2 id="project_tagline">getusermedia camera app</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tkhemani/getusermedia_tk/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tkhemani/getusermedia_tk/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <p>&lt;!DOCTYPE html&gt;
-
-</p>
-    GumWrapper example<h1>GumWrapper example</h1>
-
-<pre><code>&lt;video id="myVideo"&gt;&lt;/video&gt;
-
-&lt;script src="gumwrapper.min.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-(function() {
-    function showSuccess(video) {
-        alert('Hey, it works! Dimensions: ' + video.videoWidth + ' x ' + video.videoHeight);
-    }
-    function showError(error) {
-        alert('Oops: ' + error.message);
-    }
-    var gum = new GumWrapper({video: 'myVideo'}, showSuccess, showError);
-    gum.play();
-})();
-&lt;/script&gt;
-</code></pre>
-
-<p>
-</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Getusermedia tk maintained by <a href="https://github.com/tkhemani">tkhemani</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+    <script src="gumwrapper.min.js"></script>
+    <script>
+    (function() {
+        function showSuccess(video) {
+            alert('Hey, it works! Dimensions: ' + video.videoWidth + ' x ' + video.videoHeight);
+        }
+        function showError(error) {
+            alert('Oops: ' + error.message);
+        }
+        var gum = new GumWrapper({video: 'myVideo'}, showSuccess, showError);
+        gum.play();
+    })();
+    </script>
+</body>
 </html>
