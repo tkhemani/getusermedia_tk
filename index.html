@@ -2,26 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes">
     <title>GumWrapper example</title>
 </head>
 <body>
     <h1>GumWrapper example</h1>
 
-    <video id="myVideo"></video>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
 
-    <script src="gumwrapper.min.js"></script>
     <script>
-    (function() {
-        function showSuccess(video) {
-            alert('Hey, it works! Dimensions: ' + video.videoWidth + ' x ' + video.videoHeight);
-        }
-        function showError(error) {
-            alert('Oops: ' + error.message);
-        }
-        var gum = new GumWrapper({video: 'myVideo'}, showSuccess, showError);
-        gum.play();
-    })();
+    // Put event listeners into place
+window.addEventListener("DOMContentLoaded", function() {
+    // Grab elements, create settings, etc.
+	var canvas = document.getElementById("canvas"),
+		context = canvas.getContext("2d"),
+		video = document.getElementById("video"),
+		videoObj = { "video": true },
+		errBack = function(error) {
+			console.log("Video capture error: ", error.code); 
+		};
+
+	// Put video listeners into place
+	if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+}, false);
+
+// Trigger photo take
+document.getElementById("snap").addEventListener("click", function() {
+    context.drawImage(video, 0, 0, 640, 480);
+});
     </script>
 </body>
 </html>
